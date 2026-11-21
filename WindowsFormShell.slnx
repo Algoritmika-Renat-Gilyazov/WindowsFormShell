@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="WindowsFormShell/WindowsFormShell.vcxproj" Id="8b7918e1-a667-496e-91e7-e3e1d92cad73" />
+</Solution>
