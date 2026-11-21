@@ -8,7 +8,14 @@ namespace Form {
 		struct Command {
 			std::string name;
 			std::vector<std::string> args;
-			Command(std::string cmd) : name(Utils::split(cmd, " ")[0]), args(Utils::split(cmd, " ").begin() + 1, Utils::split(cmd, " ").end()) {}
+			Command(std::string cmd) {
+				std::vector<std::string> parts = Utils::split(cmd, " ");
+
+				if (!parts.empty()) {
+					name = parts[0];
+					args.assign(parts.begin() + 1, parts.end());
+				}
+			}
 		};
 		class Shell
 		{
@@ -27,6 +34,7 @@ namespace Form {
 					delete cmd;
 					cmd = nullptr;
 				}
+				return 0;
 			}
 			Command* input() {
 				std::string cmd;
