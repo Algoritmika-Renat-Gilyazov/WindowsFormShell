@@ -8,7 +8,7 @@ namespace Form {
 		struct Command {
 			std::string name;
 			std::vector<std::string> args;
-			Command(std::string cmd) : name(Utils::split(cmd, " ")[0]), args(Utils::split(cmd, " ").begin()) {}
+			Command(std::string cmd) : name(Utils::split(cmd, " ")[0]), args(Utils::split(cmd, " ").begin() + 1, Utils::split(cmd, " ").end()) {}
 		};
 		class Shell
 		{
@@ -20,13 +20,19 @@ namespace Form {
 			Shell(std::filesystem::path cwd = std::filesystem::current_path()) : cwd(cwd) {}
 			unsigned int run() {
 				std::cout << "Windows FormShell " << MAJOR << '.' << MINOR << '.' << PATCH << "\n\n";
-				std::string 
+				Command* cmd = nullptr;
 				for (;;) {
 					std::cout << std::filesystem::weakly_canonical(cwd).string() << "> ";
-
+					cmd = input();
+					delete cmd;
+					cmd = nullptr;
 				}
 			}
-			Command 
+			Command* input() {
+				std::string cmd;
+				std::getline(std::cin, cmd);
+				return new Command(cmd);
+			}
 		};
 	}
 }
