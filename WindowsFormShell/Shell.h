@@ -31,6 +31,13 @@ namespace Form {
 				for (;;) {
 					std::cout << std::filesystem::weakly_canonical(cwd).string() << "> ";
 					cmd = input();
+					if (cmd->name == "exit") {
+						delete cmd;
+						cmd = nullptr;
+						return 0;
+					} else {
+						std::cout << "Unknown commad: " << cmd->name << std::endl;
+					}
 					delete cmd;
 					cmd = nullptr;
 				}
