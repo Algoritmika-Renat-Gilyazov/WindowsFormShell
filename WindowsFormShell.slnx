@@ -4,4 +4,5 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="WindowsFormShell/WindowsFormShell.vcxproj" Id="8b7918e1-a667-496e-91e7-e3e1d92cad73" />
+  <Project Path="WinUtils/WinUtils.vcxproj" Id="da47acd6-fa8c-4752-ab95-c66a2f55e6be" />
 </Solution>

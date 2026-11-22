@@ -4,6 +4,8 @@
 #include <filesystem>
 #include "Utils.h"
 #include <format>
+#include <Core.h>
+
 namespace Form {
 	namespace WindowsShell {
 		struct Command {
