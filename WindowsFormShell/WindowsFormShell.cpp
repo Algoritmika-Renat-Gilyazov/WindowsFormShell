@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "Shell.h"
+﻿#include "Shell.h"
 int main(int argc, char** argv)
 {
     Form::WindowsShell::Shell sh{};

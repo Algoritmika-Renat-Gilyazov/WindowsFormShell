@@ -3,6 +3,7 @@
 #include <iostream>
 #include <filesystem>
 #include "Utils.h"
+#include <format>
 namespace Form {
 	namespace WindowsShell {
 		struct Command {
@@ -22,7 +23,7 @@ namespace Form {
 		public:
 			std::filesystem::path cwd;
 			const unsigned short MAJOR = 0;
-			const unsigned short MINOR = 1;
+			const unsigned short MINOR = 2;
 			const unsigned short PATCH = 0;
 			Shell(std::filesystem::path cwd = std::filesystem::current_path()) : cwd(cwd) {}
 			unsigned int run() {
@@ -35,6 +36,20 @@ namespace Form {
 						delete cmd;
 						cmd = nullptr;
 						return 0;
+					} else if (cmd->name.empty()) {
+
+					} else if (cmd->name == "echo") {
+						for (size_t i = 0; i < cmd->args.size(); ++i) {
+							std::cout << std::format("{}{}", i > 0 ? " " : "", cmd->args[i]);
+						}
+						std::cout << std::endl;
+					} else if (cmd->name == "pwd") {
+						std::cout << std::filesystem::weakly_canonical(cwd).string() << std::endl;
+					} else if (cmd->name == "cd") {
+						cwd = "";
+						for (size_t i = 0; i < cmd->args.size(); ++i) {
+							cwd += std::format("{}{}", i > 0 ? " " : "", cmd->args[i]);
+						}
 					} else {
 						std::cout << "Unknown commad: " << cmd->name << std::endl;
 					}
